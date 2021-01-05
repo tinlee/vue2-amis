@@ -29,6 +29,10 @@ export default {
     dialog: {
       type: Object,
       default: () => ({})
+    },
+    confirmText:{
+      type:String,
+      default:''
     }
   },
   data() {
@@ -40,6 +44,13 @@ export default {
     clickHandle() {
       if (this.actionType === "dialog") {
         this.dialogShow = true
+      }else if(this.actionType==='ajax'){
+         this.$confirm(this.confirmText, '请注意', {
+      confirmButtonText: "确定",
+      cancelButtonText: "取消",
+      type: "warning"
+    })
+       
       }
     }
   }

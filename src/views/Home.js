@@ -22,7 +22,7 @@ const schema = {
           title: "新增表单",
           body: {
             type: "form",
-            api: "post:https://houtai.baidu.com/api/sample",
+            api: "/form/add",
             controls: [
               {
                 type: "text",
@@ -64,6 +64,20 @@ const schema = {
           {
             name: "content",
             label: "content"
+          },
+          {
+            "type": "operation",
+            "label": "操作",
+            "buttons": [
+              {
+                "label": "删除",
+                "type": "button",
+                "actionType": "ajax",
+                "level": "danger",
+                "confirmText": "确认要删除？",
+                "api": "delete:https://houtai.baidu.com/api/sample/${id}"
+              }
+            ]
           }
         ]
       }

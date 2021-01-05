@@ -16,5 +16,6 @@ export default {
 		})
 		//在index.js中引入数据
 		Mock.mock('/list/index', 'get', listAPI.listData);
+		Mock.mock('/form/add', 'get', listAPI.add);
 	}
 }

@@ -21,5 +21,12 @@ export default {
       ],
       total:100
     });
+  },
+  add: () => {
+    // confit中存放的是{url: "/list/index", type: "GET", body: null}
+    // body是传过来的值
+    return Mock.mock({
+      
+    });
   }
 };

@@ -1,6 +1,6 @@
 <template>
   <el-dialog  :visible.sync="dialogVisible" :title="config.title">
-      <amis-render :schema="config.body" />
+      <amis-render :schema="config.body" @success="successHandel"/>
   </el-dialog>
 </template>
 
@@ -25,6 +25,11 @@ export default {
             set(val){
                 this.$emit("input",val)
             }
+        }
+    },
+    methods:{
+        successHandel(){
+            this.dialogVisible=false
         }
     }
 }

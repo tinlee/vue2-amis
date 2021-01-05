@@ -1,6 +1,11 @@
 <template>
   <div>
-    <el-form size="small" :inline="true" :model="query" v-if="filter && filter.controls">
+    <el-form
+      size="small"
+      :inline="true"
+      :model="query"
+      v-if="filter && filter.controls"
+    >
       <el-form-item
         :label="item.label"
         v-for="item in filter.controls"
@@ -13,17 +18,19 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-
-        <el-button size="small" >搜索</el-button>
+        <el-button size="small">搜索</el-button>
       </el-form-item>
     </el-form>
     <el-table :data="data">
-      <el-table-column
-        :prop="item.name"
-        :label="item.label"
-        v-for="item in columns"
-        :key="item.name"
-      ></el-table-column>
+      <template v-for="(item,index) in columns">
+        <el-table-column :prop="item.name" v-if="!item.type" :label="item.label" :key="item.name">
+        </el-table-column>
+         <el-table-column :prop="item.name" v-else-if="item.type==='operation'" :label="item.label" :key="'operation'+index">
+            <template v-if="item.buttons">
+                <amis-button v-for="(item,index) in item.buttons" :confirmText="item.confirmText" :key="index" :level="item.level" :actionType="item.actionType" :label="item.label"></amis-button>
+            </template>
+        </el-table-column>
+      </template>
     </el-table>
     <el-pagination
       @size-change="handleSizeChange"
@@ -39,6 +46,7 @@
 </template>
 
 <script>
+
 export default {
   props: {
     api: {
