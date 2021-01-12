@@ -18,17 +18,35 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button size="small">搜索</el-button>
+        <el-button size="small" @click="getList">搜索</el-button>
       </el-form-item>
     </el-form>
     <el-table :data="data">
-      <template v-for="(item,index) in columns">
-        <el-table-column :prop="item.name" v-if="!item.type" :label="item.label" :key="item.name">
+      <template v-for="(item, index) in columns">
+        <el-table-column
+          :prop="item.name"
+          v-if="!item.type"
+          :label="item.label"
+          :key="item.name"
+        >
         </el-table-column>
-         <el-table-column :prop="item.name" v-else-if="item.type==='operation'" :label="item.label" :key="'operation'+index">
-            <template v-if="item.buttons">
-                <amis-button v-for="(item,index) in item.buttons" :confirmText="item.confirmText" :key="index" :level="item.level" :actionType="item.actionType" :label="item.label"></amis-button>
-            </template>
+        <el-table-column
+          :prop="item.name"
+          v-else-if="item.type === 'operation'"
+          :label="item.label"
+          :key="'operation' + index"
+        >
+          <template v-if="item.buttons">
+            <amis-button
+              v-for="(item, index) in item.buttons"
+              :confirmText="item.confirmText"
+              :key="index"
+              :level="item.level"
+              :actionType="item.actionType"
+              :label="item.label"
+              :dialog="item.dialog"
+            ></amis-button>
+          </template>
         </el-table-column>
       </template>
     </el-table>
@@ -46,10 +64,18 @@
 </template>
 
 <script>
-
 export default {
+  inject: ["registPageEvent"],
   props: {
+    uid: {
+      type:[ String ,Number],
+      default:'default'
+    },
     api: {
+      type: String,
+      default: "",
+    },
+    title: {
       type: String,
       default: "",
     },
@@ -73,7 +99,9 @@ export default {
     };
   },
   async created() {
+    this.$parent.__reload = this.getList;
     this.getList();
+    this.registPageEvent(this.uid, this.getList);
   },
   methods: {
     async getList() {

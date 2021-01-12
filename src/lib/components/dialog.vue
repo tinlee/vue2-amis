@@ -30,6 +30,7 @@ export default {
     methods:{
         successHandel(){
             this.dialogVisible=false
+            this.$emit('success')
         }
     }
 }

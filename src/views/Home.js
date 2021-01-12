@@ -40,6 +40,7 @@ const schema = {
       },
       {
         type: "crud",
+        title: "asd",
         api: "/list/index",
         filter: {
           title: "条件搜索",
@@ -66,16 +67,41 @@ const schema = {
             label: "content"
           },
           {
-            "type": "operation",
-            "label": "操作",
-            "buttons": [
+            type: "operation",
+            label: "操作",
+            buttons: [
               {
-                "label": "删除",
-                "type": "button",
-                "actionType": "ajax",
-                "level": "danger",
-                "confirmText": "确认要删除？",
-                "api": "delete:https://houtai.baidu.com/api/sample/${id}"
+                label: "删除",
+                type: "button",
+                actionType: "ajax",
+                level: "danger",
+                confirmText: "确认要删除？",
+                api: "delete:https://houtai.baidu.com/api/sample/${id}"
+              },
+              {
+                label: "修改",
+                type: "button",
+                actionType: "dialog",
+                dialog: {
+                  title: "新增表单",
+                  body: {
+                    type: "form",
+                    initApi: "/api/sample/${id}",
+                    api: "post:/api/sample/${id}",
+                    controls: [
+                      {
+                        type: "text",
+                        name: "engine",
+                        label: "Engine"
+                      },
+                      {
+                        type: "text",
+                        name: "browser",
+                        label: "Browser"
+                      }
+                    ]
+                  }
+                }
               }
             ]
           }

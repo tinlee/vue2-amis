@@ -39,6 +39,9 @@ Object.entries(comList).forEach(([key, val]) => {
 
 function render(schema, h) {
   let child = [];
+  if( schema.type===undefined){
+    return undefined
+  }
   const props = getProps(schema);
   const layout = "amis-" + schema.type;
   if (Array.isArray(schema.body)) {
@@ -51,7 +54,7 @@ function render(schema, h) {
 
 
 
-  return h(layout, { props }, child);
+  return h(layout, { props}, child);
 }
 
 

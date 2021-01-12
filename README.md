@@ -1,24 +1,16 @@
 # vue-amis
-
-## Project setup
+参照百度的amis项目，做了element和vue2.x的兼容版本
+schema用法参照 https://baidu.gitee.io/amis/zh-CN/docs/components/custom
+# 项目测试
 ```
 yarn install
-```
-
-### Compiles and hot-reloads for development
-```
 yarn serve
 ```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# 功能列表
+## v1.0
++ [ ] page基础组件
++ [ ] form表单
++ [ ] curd表格
++ [ ] button按钮
++ [ ] 自定义组件
++ [ ] 布局
